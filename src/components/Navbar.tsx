@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
       : 'bg-transparent py-6'
   }`;
   
-  const linkClasses = (path: string) => `text-lg font-medium transition-colors hover:text-blue-600 relative group ${
+  const linkClasses = (path: string) => `text-base sm:text-base md:text-lg font-medium transition-colors hover:text-blue-600 relative group ${
     isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'
   } ${location.pathname === path ? 'text-blue-600' : ''}`;
 
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-4">
             {navLinks.map((link) => (
               <Link key={link.path} to={link.path} className={linkClasses(link.path)}>
                 {link.label}
@@ -197,7 +197,6 @@ const Navbar: React.FC = () => {
             }
           </button>
         </div>
-        
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden fixed inset-0 bg-white z-50 flex flex-col">
@@ -208,7 +207,7 @@ const Navbar: React.FC = () => {
                   alt="Zoe Car Dealership Logo"
                   className="h-8 w-auto"
                 />
-                <span className="text-xl font-bold text-blue-600">Zoe Car Dealership</span>
+                <span className="text-lg font-bold text-blue-600">Zoe Car Dealership</span>
               </Link>
               <button
                 className="p-2 rounded-full hover:bg-gray-100"
@@ -218,13 +217,13 @@ const Navbar: React.FC = () => {
                 <X size={28} className="text-gray-800" />
               </button>
             </div>
-            <div className="flex-1 flex flex-col p-6 space-y-4 overflow-y-auto">
+            <div className="flex-1 flex flex-col p-6 space-y-2 overflow-y-auto">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-xl font-semibold text-gray-800 hover:text-blue-600 py-3 rounded transition-colors ${location.pathname === link.path ? 'text-blue-600 bg-blue-50' : ''}`}
+                  className={`text-base font-semibold text-gray-800 hover:text-blue-600 py-2 rounded transition-colors ${location.pathname === link.path ? 'text-blue-600 bg-blue-50' : ''}`}
                 >
                   {link.label}
                 </Link>
@@ -236,9 +235,9 @@ const Navbar: React.FC = () => {
                       <Link
                         to="/admin"
                         onClick={() => setIsMenuOpen(false)}
-                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2 text-base"
                       >
-                        <User size={24} />
+                        <User size={22} />
                         {t('nav.adminDashboard')}
                       </Link>
                     ) : (
@@ -246,25 +245,25 @@ const Navbar: React.FC = () => {
                         <Link
                           to="/profile"
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2 text-base"
                         >
-                          <User size={24} />
+                          <User size={22} />
                           {t('nav.profile')}
                         </Link>
                         <Link
                           to="/saved-vehicles"
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2 text-base"
                         >
-                          <BookmarkCheck size={24} />
+                          <BookmarkCheck size={22} />
                           {t('nav.savedVehicles')}
                         </Link>
                         <Link
                           to="/chat"
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2 text-base"
                         >
-                          <MessageCircle size={24} />
+                          <MessageCircle size={22} />
                           {t('nav.messages')}
                           {unreadCount > 0 && (
                             <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs ml-2">
@@ -276,9 +275,9 @@ const Navbar: React.FC = () => {
                     )}
                     <button
                       onClick={() => { handleLogout(); setIsMenuOpen(false); }}
-                      className="flex items-center gap-3 text-red-600 hover:text-red-700 py-3 text-lg w-full text-left"
+                      className="flex items-center gap-3 text-red-600 hover:text-red-700 py-2 text-base w-full text-left"
                     >
-                      <LogOut size={24} />
+                      <LogOut size={22} />
                       {t('nav.logout')}
                     </button>
                   </>
@@ -286,7 +285,7 @@ const Navbar: React.FC = () => {
                   <Link
                     to="/login"
                     onClick={() => setIsMenuOpen(false)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors text-lg font-semibold text-center w-full mt-2"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors text-base font-semibold text-center w-full mt-2"
                   >
                     {t('nav.login')}
                   </Link>
