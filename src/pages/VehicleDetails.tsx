@@ -125,8 +125,8 @@ export default function VehicleDetails() {
 
   return (
     <div className="w-full pt-24">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="container mx-auto responsive-section">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Image Gallery */}
           <div className="space-y-4">
             <div className="relative pb-[56.25%] rounded-lg overflow-hidden">

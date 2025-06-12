@@ -8,7 +8,7 @@ const Terms: React.FC = () => {
     <div className="w-full pt-24">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto responsive-section text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -19,8 +19,7 @@ const Terms: React.FC = () => {
               alt="Zoe Car Dealership Logo" 
               className="h-16 w-auto mx-auto mb-6"
             />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
-            <p className="text-xl text-gray-300">Last updated: May 1, 2025</p>
+            <h1 className="responsive-title mb-4">Terms of Service</h1>
           </motion.div>
         </div>
       </div>

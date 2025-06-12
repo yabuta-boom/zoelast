@@ -142,24 +142,24 @@ const SpareParts: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Page Header */}
-      <section className="relative bg-blue-600 text-white py-20 px-4">
+      <section className="relative bg-blue-600 text-white py-12 sm:py-20 px-2 sm:px-4">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-blue-600 to-blue-800 opacity-90"></div>
-        <div className="relative container mx-auto text-center">
+        <div className="relative container mx-auto text-center responsive-section">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 sm:mb-6">
               {t('spareParts.title')}
             </h1>
-            <p className="text-lg md:text-xl text-neutral-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-neutral-200 max-w-3xl mx-auto leading-relaxed">
               {t('spareParts.subtitle')}
             </p>
             {isAdmin && (
               <Link
                 to="/admin?tab=spare-parts"
-                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-white text-blue-600 rounded-full hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center gap-2 mt-4 sm:mt-6 px-4 sm:px-6 py-2 bg-white text-blue-600 rounded-full hover:bg-blue-50 transition-colors"
               >
                 <Settings size={20} />
                 Manage Spare Parts
@@ -170,8 +170,8 @@ const SpareParts: React.FC = () => {
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 px-4 bg-gray-100">
-        <div className="container mx-auto">
+      <section className="py-6 sm:py-8 px-2 sm:px-4 bg-gray-100">
+        <div className="container mx-auto responsive-section">
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <div>
               <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
@@ -272,9 +272,9 @@ const SpareParts: React.FC = () => {
       </section>
 
       {/* Parts Grid */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-8 sm:py-16 px-2 sm:px-4 bg-white">
+        <div className="container mx-auto responsive-section">
+          <div className="responsive-grid-3">
             {currentParts.map((part) => (
               <SparePartCard
                 key={part.id}

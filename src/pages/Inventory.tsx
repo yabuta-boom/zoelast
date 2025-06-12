@@ -201,8 +201,8 @@ const Inventory: React.FC = () => {
       </section>
 
       {/* Inventory Grid */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
+      <section className="py-8 sm:py-16 px-2 sm:px-4 bg-white">
+        <div className="container mx-auto responsive-section">
           {loading ? (
             <div className="flex justify-center items-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
@@ -218,7 +218,7 @@ const Inventory: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="responsive-grid-3">
               {currentCars.map((car) => (
                 <VehicleCard 
                   key={car.id} 

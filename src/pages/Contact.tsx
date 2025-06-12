@@ -93,8 +93,8 @@ const Contact: React.FC = () => {
       </div>
 
       {/* Main Content Section */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+      <div className="container mx-auto responsive-section py-8 sm:py-12">
+        <div className="responsive-grid-2 gap-8 mb-8 sm:mb-16">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

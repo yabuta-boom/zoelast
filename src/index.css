@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  /* Responsive font sizes for headings */
+  .responsive-title {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  .responsive-section {
+    @apply px-2 sm:px-4 md:px-6 lg:px-8;
+  }
+  .responsive-grid-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
+  }
+  .responsive-grid-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6;
+  }
+  .responsive-grid-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6;
+  }
+  .responsive-card {
+    @apply p-4 sm:p-6 md:p-8 rounded-lg shadow-lg;
+  }
+  .responsive-btn {
+    @apply w-full sm:w-auto px-4 py-2 rounded-full font-semibold;
+  }
+}

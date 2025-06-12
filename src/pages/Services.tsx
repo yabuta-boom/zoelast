@@ -33,17 +33,17 @@ export default function Services() {
     <div className="w-full pt-24">
       {/* Blue Banner Section */}
       <div className="bg-blue-600 text-white py-12">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold mb-4">{t('services.title')}</h1>
-          <p className="text-lg">
+        <div className="container mx-auto responsive-section text-center">
+          <h1 className="responsive-title font-bold mb-4">{t('services.title')}</h1>
+          <p className="text-lg sm:text-xl">
             {t('services.subtitle')}
           </p>
         </div>
       </div>
 
       {/* Main Content Section */}
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="container mx-auto responsive-section">
+        <div className="responsive-grid-2 mb-8 sm:mb-16">
           {services.map((service, index) => (
             <motion.div
               key={index}
