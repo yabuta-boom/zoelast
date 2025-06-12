@@ -1,0 +1,39 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+         exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin"));
+    }
+    
+    function isImageType(contentType) {
+      return contentType.matches('image/.*');
+    }
+    
+    // Vehicle images folder
+    match /vehicles/{imageId} {
+      // Anyone can view vehicle images
+      allow read: if true;
+      // Only admins can upload, update, or delete images
+      allow write: if isAdmin() 
+        && isImageType(request.resource.contentType)
+        && request.resource.size < 5 * 1024 * 1024; // 5MB max
+    }
+    
+    // User uploads folder
+    match /users/{userId}/{document=**} {
+      // Users can manage their own uploads
+      allow read, write: if isAuthenticated() 
+        && request.auth.uid == userId
+        && isImageType(request.resource.contentType)
+        && request.resource.size < 2 * 1024 * 1024; // 2MB max
+    }
+  }
+}
