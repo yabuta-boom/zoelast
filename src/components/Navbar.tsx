@@ -200,78 +200,98 @@ const Navbar: React.FC = () => {
         
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed left-0 right-0 top-[80px] bottom-0 bg-white overflow-y-auto">
-            <div className="flex flex-col p-6 space-y-6">
+          <div className="lg:hidden fixed inset-0 bg-white z-50 flex flex-col">
+            <div className="flex items-center justify-between px-6 py-4 border-b">
+              <Link to="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+                <img 
+                  src="https://res.cloudinary.com/dznucv93w/image/upload/v1747405288/logo_e2go6j.png"
+                  alt="Zoe Car Dealership Logo"
+                  className="h-8 w-auto"
+                />
+                <span className="text-xl font-bold text-blue-600">Zoe Car Dealership</span>
+              </Link>
+              <button
+                className="p-2 rounded-full hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={28} className="text-gray-800" />
+              </button>
+            </div>
+            <div className="flex-1 flex flex-col p-6 space-y-4 overflow-y-auto">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-lg font-medium text-gray-800 hover:text-blue-600 py-2 relative group ${
-                    location.pathname === link.path ? 'text-blue-600' : ''
-                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-xl font-semibold text-gray-800 hover:text-blue-600 py-3 rounded transition-colors ${location.pathname === link.path ? 'text-blue-600 bg-blue-50' : ''}`}
                 >
                   {link.label}
-                  <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform origin-left transition-transform duration-300 ${
-                    location.pathname === link.path ? 'scale-x-100' : 'scale-x-0'
-                  } group-hover:scale-x-100`} />
                 </Link>
               ))}
-              {user ? (
-                <>
-                  {isAdmin ? (
-                    <Link
-                      to="/admin"
-                      className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2"
-                    >
-                      <User size={24} />
-                      {t('nav.adminDashboard')}
-                    </Link>
-                  ) : (
-                    <>
+              <div className="mt-4 border-t pt-4 flex flex-col gap-2">
+                {user ? (
+                  <>
+                    {isAdmin ? (
                       <Link
-                        to="/profile"
-                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2"
+                        to="/admin"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
                       >
                         <User size={24} />
-                        {t('nav.profile')}
+                        {t('nav.adminDashboard')}
                       </Link>
-                      <Link
-                        to="/saved-vehicles"
-                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2"
-                      >
-                        <BookmarkCheck size={24} />
-                        {t('nav.savedVehicles')}
-                      </Link>
-                      <Link
-                        to="/chat"
-                        className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-2"
-                      >
-                        <MessageCircle size={24} />
-                        {t('nav.messages')}
-                        {unreadCount > 0 && (
-                          <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                            {unreadCount}
-                          </span>
-                        )}
-                      </Link>
-                    </>
-                  )}
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-3 text-red-600 hover:text-red-700 py-2 w-full text-left"
+                    ) : (
+                      <>
+                        <Link
+                          to="/profile"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                        >
+                          <User size={24} />
+                          {t('nav.profile')}
+                        </Link>
+                        <Link
+                          to="/saved-vehicles"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                        >
+                          <BookmarkCheck size={24} />
+                          {t('nav.savedVehicles')}
+                        </Link>
+                        <Link
+                          to="/chat"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center gap-3 text-gray-800 hover:text-blue-600 py-3 text-lg"
+                        >
+                          <MessageCircle size={24} />
+                          {t('nav.messages')}
+                          {unreadCount > 0 && (
+                            <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs ml-2">
+                              {unreadCount}
+                            </span>
+                          )}
+                        </Link>
+                      </>
+                    )}
+                    <button
+                      onClick={() => { handleLogout(); setIsMenuOpen(false); }}
+                      className="flex items-center gap-3 text-red-600 hover:text-red-700 py-3 text-lg w-full text-left"
+                    >
+                      <LogOut size={24} />
+                      {t('nav.logout')}
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors text-lg font-semibold text-center w-full mt-2"
                   >
-                    <LogOut size={24} />
-                    {t('nav.logout')}
-                  </button>
-                </>
-              ) : (
-                <Link
-                  to="/login"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors text-lg font-medium text-center w-full"
-                >
-                  {t('nav.login')}
-                </Link>
-              )}
+                    {t('nav.login')}
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         )}
